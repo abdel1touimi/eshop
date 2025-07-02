@@ -15,9 +15,6 @@ class FakeStoreApiService
     private readonly string $apiBaseUrl
   ) {}
 
-  /**
-   * Get all products from Fake Store API with query parameters
-   */
   public function getAllProducts(?int $limit = null, ?string $sort = null): array
   {
     try {
@@ -43,9 +40,6 @@ class FakeStoreApiService
     }
   }
 
-  /**
-   * Get single product by ID from Fake Store API
-   */
   public function getProduct(int $id): array
   {
     try {
@@ -56,9 +50,6 @@ class FakeStoreApiService
     }
   }
 
-  /**
-   * Get products by category from Fake Store API with query parameters
-   */
   public function getProductsByCategory(string $category, ?int $limit = null, ?string $sort = null): array
   {
     try {
@@ -84,9 +75,6 @@ class FakeStoreApiService
     }
   }
 
-  /**
-   * Get all categories from Fake Store API
-   */
   public function getCategories(): array
   {
     try {

@@ -13,9 +13,6 @@ class ValidationService
     private readonly LoggerInterface $logger
   ) {}
 
-  /**
-   * Validate an object and return formatted errors
-   */
   public function validate(object $object): array
   {
     $violations = $this->validator->validate($object);
@@ -31,17 +28,11 @@ class ValidationService
     return $this->formatViolations($violations);
   }
 
-  /**
-   * Check if object is valid
-   */
   public function isValid(object $object): bool
   {
     return count($this->validator->validate($object)) === 0;
   }
 
-  /**
-   * Format constraint violations into array
-   */
   private function formatViolations(ConstraintViolationListInterface $violations): array
   {
     $errors = [];
