@@ -1,0 +1,28 @@
+parameters:
+    app.cart.discount_threshold: '%env(float:CART_DISCOUNT_THRESHOLD)%'
+    app.cart.discount_rate: '%env(float:CART_DISCOUNT_RATE)%'
+    app.cart.default_currency: '%env(CART_DEFAULT_CURRENCY)%'
+    app.cart.session_key: '%env(CART_SESSION_KEY)%'
+    app.api.fake_store_url: '%env(FAKE_STORE_API_URL)%'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $discountThreshold: '%app.cart.discount_threshold%'
+            $discountRate: '%app.cart.discount_rate%'
+            $defaultCurrency: '%app.cart.default_currency%'
+            $sessionKey: '%app.cart.session_key%'
+            $apiBaseUrl: '%app.api.fake_store_url%'
+            $logger: '@logger'
+    App\Service\ValidationService:
+        arguments:
+            $logger: '@monolog.logger.validation'
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
