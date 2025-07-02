@@ -1,14 +1,14 @@
 # 🛍️ E-Shop Gallery
 
-A full-stack e-commerce application built with Symfony6.4 and Vue.js, featuring product filtering, cart management with dynamic discounts.
+A full-stack e-commerce application built with Symfony6.4 and Vue.js, featuring product filtering, cart management with discounts.
 
 ## 🌟 Features
 
 ### Core Functionality
-- **Product Catalog** - Browse products fetched from Fake Store API with responsive grid layout
+- **Product Catalog** - Browse products fetched from Fake Store API
 - **Cart System** - Cart management with 10% discount on orders over €200
-- **Real-time Search** - Instant product search with debounced input
-- **Smart Filtering** - Filter by category, price range, and sort options
+- **Search** - Instant product search with debounced input
+- **Filtering** - Filter by category, price range, and sort options
 - **Session Persistence** - Cart maintains state across browser sessions
 
 ### Technical Highlights

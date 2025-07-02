@@ -2,7 +2,7 @@ import axios from 'axios'
 import type { Product, Cart, ApiResponse, AddToCartRequest, UpdateCartItemRequest } from '@/types/api'
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api', // Hardcoded as working
+  baseURL: import.meta.env.VITE_API_BASE_URL, // Hardcoded as working
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json'

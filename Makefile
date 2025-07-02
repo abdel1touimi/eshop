@@ -96,3 +96,8 @@ cache-clear: ## Clear Symfony cache
 	@echo "${YELLOW}Clearing Symfony cache...${RESET}"
 	$(DC) exec app php bin/console cache:clear
 	@echo "${GREEN}Cache cleared!${RESET}"
+
+test: ## Run all tests
+	@echo "${YELLOW}Running all tests...${RESET}"
+	$(DC) exec app ./vendor/bin/phpunit
+	@echo "${GREEN}Tests completed!${RESET}"
