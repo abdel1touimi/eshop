@@ -1,4 +1,3 @@
-<!-- src/components/ProductFilters.vue -->
 <template>
   <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-6">
     <div class="flex items-center justify-between mb-4">
@@ -12,7 +11,6 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-      <!-- Search -->
       <div class="lg:col-span-2">
         <label for="search" class="block text-sm font-medium text-gray-700 mb-2">
           Search Products
@@ -34,7 +32,6 @@
         </div>
       </div>
 
-      <!-- Category -->
       <div>
         <label for="category" class="block text-sm font-medium text-gray-700 mb-2">
           Category
@@ -52,7 +49,6 @@
         </select>
       </div>
 
-      <!-- Sort -->
       <div>
         <label for="sort" class="block text-sm font-medium text-gray-700 mb-2">
           Sort By
@@ -69,7 +65,6 @@
         </select>
       </div>
 
-      <!-- Limit -->
       <div>
         <label for="limit" class="block text-sm font-medium text-gray-700 mb-2">
           Show
@@ -89,7 +84,6 @@
       </div>
     </div>
 
-    <!-- Price Range -->
     <div class="mt-6" v-if="priceRange.min < priceRange.max">
       <label class="block text-sm font-medium text-gray-700 mb-2">
         Price Range: {{ formatPrice(currentMinPrice, 'EUR') }} - {{ formatPrice(currentMaxPrice, 'EUR') }}
@@ -124,7 +118,6 @@
       </div>
     </div>
 
-    <!-- Active Filters -->
     <div v-if="activeFiltersCount > 0" class="mt-4 pt-4 border-t border-gray-200">
       <div class="flex items-center justify-between mb-2">
         <span class="text-sm font-medium text-gray-700">Active Filters ({{ activeFiltersCount }})</span>
@@ -180,7 +173,6 @@ import { ref, computed, watch, onMounted } from 'vue'
 import { useProducts } from '@/composables/useProducts'
 import { formatPrice, type ProductFilters } from '@/services/api'
 
-// Simple debounce function
 const debounce = (func: Function, wait: number) => {
   let timeout: number
   return (...args: any[]) => {
@@ -189,10 +181,8 @@ const debounce = (func: Function, wait: number) => {
   }
 }
 
-// Composables
 const { categories, priceRange, applyFilters: applyProductFilters, clearFilters } = useProducts()
 
-// Local reactive filters
 const localFilters = ref<ProductFilters>({
   search: '',
   category: '',
@@ -202,7 +192,6 @@ const localFilters = ref<ProductFilters>({
   maxPrice: undefined
 })
 
-// Computed properties
 const currentMinPrice = computed(() => localFilters.value.minPrice || priceRange.value.min)
 const currentMaxPrice = computed(() => localFilters.value.maxPrice || priceRange.value.max)
 
@@ -221,7 +210,6 @@ const hasPriceFilter = computed(() => {
          (localFilters.value.maxPrice !== undefined && localFilters.value.maxPrice < priceRange.value.max)
 })
 
-// Debounced functions
 const debouncedSearch = debounce(() => {
   applyFilters()
 }, 500)
@@ -230,9 +218,7 @@ const debouncedPriceChange = debounce(() => {
   applyFilters()
 }, 800)
 
-// Methods
 const applyFilters = async () => {
-  // Clean up undefined values
   const cleanFilters: ProductFilters = {}
 
   if (localFilters.value.search?.trim()) {
